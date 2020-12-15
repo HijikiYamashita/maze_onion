@@ -6,7 +6,8 @@ public class onionsScript : MonoBehaviour
 {
     public int speed;
 
-    //bool stalking = false;
+    bool stalking = false;
+    public bool a = false;
 
     void Start()
     {
@@ -15,27 +16,14 @@ public class onionsScript : MonoBehaviour
 
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, transform.forward);
-        int distance = 1;
 
-        Debug.DrawLine(transform.position, transform.forward * distance, Color.red);
-
-        if (Physics.Raycast(ray, out hit, distance))
-        {
-            if (hit.collider.tag == "Player")
-            {
-                Debug.Log("あたた");
-            }
-        }
     }
 
-    /*void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
             stalking = true;
-            Debug.Log("あたた");
         }
-    }*/
+    }
 }
