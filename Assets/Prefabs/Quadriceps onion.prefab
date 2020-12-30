@@ -980,11 +980,11 @@ GameObject:
   - component: {fileID: 7532570298368108965}
   m_Layer: 0
   m_Name: Quadriceps onion
-  m_TagString: Untagged
+  m_TagString: onions
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &273625289303663340
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ Animator:
   m_GameObject: {fileID: 3897946706612819941}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c7e010f05177d0b4898b61ca8c1811aa, type: 2}
-  m_Controller: {fileID: 9100000, guid: 250c75bdf54d69f43b6773323e5fadd0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 23d0a9d18db201b4d9b5aa5a45e5ea00, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

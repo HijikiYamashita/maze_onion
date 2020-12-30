@@ -5,7 +5,16 @@ using UnityEngine.AI;
 
 public class onionsScript : MonoBehaviour
 {
-    public int speed;
+    public float walkSpeed;
+    public float dashSpeed;
+
+    public GameObject[] points;
+    public int pointsNum;
+    public int random;
+
+    float timer;
+
+    [SerializeField] LayerMask mask;
 
     GameObject player;
 
@@ -13,23 +22,36 @@ public class onionsScript : MonoBehaviour
 
     void Start()
     {
+        random = Random.Range(0, pointsNum);
         player = GameObject.Find("Player");
-        transform.Find("AroundCollider").gameObject.SetActive(false);
+        gameObject.GetComponent<NavMeshAgent>().destination = points[random].transform.position;
+        gameObject.GetComponent<NavMeshAgent>().speed = walkSpeed;
     }
 
     void Update()
     {
+        timer += Time.deltaTime;
         if (stalking == true)
         {
-            this.gameObject.GetComponent<NavMeshAgent>().destination = player.transform.position;
+            gameObject.GetComponent<NavMeshAgent>().destination = player.transform.position;
+        }
+        else if (stalking == false)
+        {
+            gameObject.GetComponent<NavMeshAgent>().destination = points[random].transform.position;
+            if (timer >= 5)
+            {
+                random = Random.Range(0, pointsNum);
+                timer = 0;
+            }
         }
     }
 
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && !Physics.Linecast(transform.position + Vector3.up,col.transform.position + Vector3.up,mask))
         {
-            transform.Find("AroundCollider").gameObject.SetActive(true);
+            Debug.Log("あたたたた");
+            gameObject.GetComponent<NavMeshAgent>().speed = dashSpeed;
             stalking = true;
         }
     }
@@ -38,13 +60,13 @@ public class onionsScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            transform.Find("AroundCollider").gameObject.SetActive(false);
-            Invoke("stalkingOff", 1);
+            Invoke("stalkingOff", 5);
         }
     }
 
     void stalkingOff()
     {
+        this.gameObject.GetComponent<NavMeshAgent>().speed = walkSpeed;
         stalking = false;
     }
 }

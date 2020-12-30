@@ -73,8 +73,8 @@ Camera:
   m_GameObject: {fileID: 1264833946912854}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.20754719, g: 0.085172676, b: 0.18327549, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 54587624234064098}
   - component: {fileID: 136239539305442568}
   - component: {fileID: 114051214696948948}
+  - component: {fileID: 699899503}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
@@ -358,10 +359,7 @@ MonoBehaviour:
   Volume: 5
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
-  footStepSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  footStepSounds: []
   fsmode: 1
   dynamicFootstep:
     materialMode: 0
@@ -420,3 +418,15 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+--- !u!114 &699899503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743903104223250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c78bf1f231d8414ea44035a2151ff18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
