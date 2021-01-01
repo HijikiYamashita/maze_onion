@@ -9,16 +9,19 @@ public class onionsScript : MonoBehaviour
     public float dashSpeed;
 
     public GameObject[] points;
-    public int pointsNum;
-    public int random;
+    [SerializeField] int pointsNum;
+    private int random;
 
-    float timer;
+    private float timer;
+
+    [SerializeField] int autoStalkingTime;
+    [SerializeField] int pointChangeTime;
 
     [SerializeField] LayerMask mask;
 
-    GameObject player;
+    private GameObject player;
 
-    [SerializeField] bool stalking = false;
+    private bool stalking = false;
 
     void Start()
     {
@@ -38,7 +41,7 @@ public class onionsScript : MonoBehaviour
         else if (stalking == false)
         {
             gameObject.GetComponent<NavMeshAgent>().destination = points[random].transform.position;
-            if (timer >= 5)
+            if (timer >= pointChangeTime)
             {
                 random = Random.Range(0, pointsNum);
                 timer = 0;
@@ -50,7 +53,6 @@ public class onionsScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" && !Physics.Linecast(transform.position + Vector3.up,col.transform.position + Vector3.up,mask))
         {
-            Debug.Log("あたたたた");
             gameObject.GetComponent<NavMeshAgent>().speed = dashSpeed;
             stalking = true;
         }
@@ -60,7 +62,7 @@ public class onionsScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Invoke("stalkingOff", 5);
+            Invoke("stalkingOff", autoStalkingTime);
         }
     }
 
