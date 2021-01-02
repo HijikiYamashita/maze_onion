@@ -687,7 +687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2576265550694673673}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 7937694643081481667}
@@ -2536,6 +2536,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  bgmManager_1: {fileID: 0}
+  bgmManager_2: {fileID: 0}
 --- !u!1 &8604026785102918436
 GameObject:
   m_ObjectHideFlags: 0

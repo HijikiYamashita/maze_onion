@@ -15,11 +15,11 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    /*void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "onions")
         {
             SceneManager.LoadScene("GameOver");
         }
-    }*/
+    }
 }

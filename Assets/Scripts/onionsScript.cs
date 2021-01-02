@@ -23,6 +23,11 @@ public class onionsScript : MonoBehaviour
 
     private bool stalking = false;
 
+    [SerializeField] GameObject bgmManager_1;
+    [SerializeField] GameObject bgmManager_2;
+
+    int hu = 1;
+
     void Start()
     {
         random = Random.Range(0, pointsNum);
@@ -55,6 +60,7 @@ public class onionsScript : MonoBehaviour
         {
             gameObject.GetComponent<NavMeshAgent>().speed = dashSpeed;
             stalking = true;
+            bgm();
         }
     }
 
@@ -70,5 +76,25 @@ public class onionsScript : MonoBehaviour
     {
         this.gameObject.GetComponent<NavMeshAgent>().speed = walkSpeed;
         stalking = false;
+        Invoke("bgm", 0.5f);
+    }
+
+    void bgm()
+    {
+        /*if (stalking == false)
+        {
+            bgmManager_2.GetComponent<AudioSource>().Stop();
+            bgmManager_1.GetComponent<AudioSource>().Play();
+            hu = 1;
+        }
+        if (stalking == true)
+        {
+            if (hu == 1)
+            {
+                bgmManager_1.GetComponent<AudioSource>().Stop();
+                bgmManager_2.GetComponent<AudioSource>().Play();
+                hu = 2;
+            }
+        }*/
     }
 }
