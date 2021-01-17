@@ -94,7 +94,6 @@ public class onionsScript : MonoBehaviour
                 bgmManager_1.GetComponent<AudioSource>().Stop();
                 bgmManager_2.GetComponent<AudioSource>().Play();
                 hu = 2;
-            }
-        }*/
+            }*/
     }
 }
