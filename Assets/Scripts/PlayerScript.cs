@@ -7,7 +7,8 @@ public class PlayerScript : MonoBehaviour
 {
     int item = 0;
 
-    public GameObject snowman;
+    public GameObject snowmanUI;
+    public GameObject hammerUI;
 
     AudioSource audioSource;
 
@@ -22,15 +23,25 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = new Ray();
-            RaycastHit hit = new RaycastHit();
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+            if (item == 1)//雪だるま
             {
-                if (hit.collider.gameObject.CompareTag("onions"))
+                snowmanUI.SetActive(false);
+                item = 0;
+            }
+            if (item == 2)//ハンマー
+            {
+                Ray ray = new Ray();
+                RaycastHit hit = new RaycastHit();
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
                 {
-                    Destroy(hit.collider.gameObject);
-                    audioSource.PlayOneShot(se_busgasexplosion);
+                    if (hit.collider.gameObject.CompareTag("onions"))
+                    {
+                        audioSource.PlayOneShot(se_busgasexplosion);
+                        Destroy(hit.collider.gameObject);
+                        hammerUI.SetActive(false);
+                        item = 0;
+                    }
                 }
             }
         }
@@ -52,13 +63,13 @@ public class PlayerScript : MonoBehaviour
             {
                 item = 1;
                 Destroy(col.gameObject);
-                snowman.SetActive(true);
+                snowmanUI.SetActive(true);
             }
             if (col.gameObject.name == "Hammer")
             {
-                item = 1;
+                item = 2;
                 Destroy(col.gameObject);
-                snowman.SetActive(true);
+                hammerUI.SetActive(true);
             }
         }
     }

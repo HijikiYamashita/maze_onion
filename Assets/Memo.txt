@@ -2,4 +2,3 @@ Packages
 ・First Person All-in-One
 ・UniVRM
 ・Basic Motions FREE Pack
-・Sherbb's Particle Collection
