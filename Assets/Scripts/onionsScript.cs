@@ -21,12 +21,7 @@ public class onionsScript : MonoBehaviour
 
     private GameObject player;
 
-    private bool stalking = false;
-
-    [SerializeField] GameObject bgmManager_1;
-    [SerializeField] GameObject bgmManager_2;
-
-    int hu = 1;
+    bool stalking = false;
 
     void Start()
     {
@@ -38,18 +33,21 @@ public class onionsScript : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (stalking == true)
+        if (Time.timeScale != 0)
         {
-            gameObject.GetComponent<NavMeshAgent>().destination = player.transform.position;
-        }
-        else if (stalking == false)
-        {
-            gameObject.GetComponent<NavMeshAgent>().destination = points[random].transform.position;
-            if (timer >= pointChangeTime)
+            timer += Time.deltaTime;
+            if (stalking == true)
             {
-                random = Random.Range(0, pointsNum);
-                timer = 0;
+                gameObject.GetComponent<NavMeshAgent>().destination = player.transform.position;
+            }
+            else if (stalking == false)
+            {
+                gameObject.GetComponent<NavMeshAgent>().destination = points[random].transform.position;
+                if (timer >= pointChangeTime)
+                {
+                    random = Random.Range(0, pointsNum);
+                    timer = 0;
+                }
             }
         }
     }
@@ -60,7 +58,8 @@ public class onionsScript : MonoBehaviour
         {
             gameObject.GetComponent<NavMeshAgent>().speed = dashSpeed;
             stalking = true;
-            bgm();
+            player.GetComponent<AudioScript>().count += 1;
+            player.GetComponent<AudioScript>().bgm();
         }
     }
 
@@ -72,28 +71,11 @@ public class onionsScript : MonoBehaviour
         }
     }
 
-    void stalkingOff()
+    public void stalkingOff()
     {
         this.gameObject.GetComponent<NavMeshAgent>().speed = walkSpeed;
         stalking = false;
-        Invoke("bgm", 0.5f);
-    }
-
-    void bgm()
-    {
-        /*if (stalking == false)
-        {
-            bgmManager_2.GetComponent<AudioSource>().Stop();
-            bgmManager_1.GetComponent<AudioSource>().Play();
-            hu = 1;
-        }
-        if (stalking == true)
-        {
-            if (hu == 1)
-            {
-                bgmManager_1.GetComponent<AudioSource>().Stop();
-                bgmManager_2.GetComponent<AudioSource>().Play();
-                hu = 2;
-            }*/
+        player.GetComponent<AudioScript>().count = 0;
+        player.GetComponent<AudioScript>().bgm();
     }
 }
