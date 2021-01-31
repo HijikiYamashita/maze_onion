@@ -9433,6 +9433,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: onion (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8425358003368862140, guid: fd6a13e38e781aa4e8c88cd20e8bd6e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7937694643081481667, guid: fd6a13e38e781aa4e8c88cd20e8bd6e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12904,7 +12909,7 @@ GameObject:
   - component: {fileID: 865874961}
   - component: {fileID: 865874960}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12918,7 +12923,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865874959}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -29176,7 +29181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1890541237
 Transform:
   m_ObjectHideFlags: 0

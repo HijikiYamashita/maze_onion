@@ -57,6 +57,12 @@ public class PlayerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        if (col.gameObject.name == "Goal")
+        {
+            Debug.Log("Iaug/#IV");
+            SceneManager.LoadScene("GameClear");
+        }
+
         if (col.gameObject.tag == "item")
         {
             if(col.gameObject.name == "Snowman")
