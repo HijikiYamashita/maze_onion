@@ -5,17 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    bool pause = false;
-    
     int item = 0;
-
     [SerializeField] GameObject[] itemUI;
 
-    [SerializeField] GameObject pauseMenu;
-
     AudioSource audioSource;
-
-    [SerializeField] AudioClip se_Bus_Gas_Explosion;
+    [SerializeField] AudioClip[] se;
 
     void Start()
     {
@@ -24,44 +18,27 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(0))
         {
-            if (pause == false)
+            if (item == 1)//死人
             {
-                pause = true;
-                pauseMenu.SetActive(true);
+                itemUI[1].SetActive(false);
+                item = 0;
             }
-            if (pause == true)
+            if (item == 2)//ハンマー
             {
-                pause = false;
-                pauseMenu.SetActive(false);
-            }
-        }
-
-        if (Time.timeScale != 0)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (item == 1)//雪だるま
+                Ray ray = new Ray();
+                RaycastHit hit = new RaycastHit();
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
                 {
-                    itemUI[1].SetActive(false);
-                    item = 0;
-                }
-                if (item == 2)//ハンマー
-                {
-                    Ray ray = new Ray();
-                    RaycastHit hit = new RaycastHit();
-                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+                    if (hit.collider.gameObject.CompareTag("onions"))
                     {
-                        if (hit.collider.gameObject.CompareTag("onions"))
-                        {
-                            audioSource.PlayOneShot(se_Bus_Gas_Explosion);
-                            hit.collider.gameObject.GetComponent<onionsScript>().stalkingOff();
-                            Destroy(hit.collider.gameObject);
-                            itemUI[2].SetActive(false);
-                            item = 0;
-                        }
+                        audioSource.PlayOneShot(se[0]);
+                        hit.collider.gameObject.GetComponent<onionsScript>().stalkingOff();
+                        Destroy(hit.collider.gameObject);
+                        itemUI[2].SetActive(false);
+                        item = 0;
                     }
                 }
             }
@@ -80,7 +57,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (col.gameObject.name == "Goal")
         {
-            //Debug.Log("Iaug/#IV");
             SceneManager.LoadScene("GameClear");
         }
 

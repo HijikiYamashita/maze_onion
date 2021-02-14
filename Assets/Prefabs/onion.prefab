@@ -2536,8 +2536,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
-  bgmManager_1: {fileID: 0}
-  bgmManager_2: {fileID: 0}
 --- !u!1 &8604026785102918436
 GameObject:
   m_ObjectHideFlags: 0
