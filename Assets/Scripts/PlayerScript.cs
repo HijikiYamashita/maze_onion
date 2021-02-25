@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    int item = 0;
-    [SerializeField] GameObject[] itemUI;
+    int currentItemNum = 0;
+    [SerializeField] GameObject[] currentItemUI;
 
     AudioSource audioSource;
     [SerializeField] AudioClip[] se;
@@ -20,12 +20,12 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (item == 1)//死人
+            if (currentItemNum == 1)//死人
             {
-                itemUI[1].SetActive(false);
-                item = 0;
+                currentItemUI[1].SetActive(false);
+                currentItemNum = 0;
             }
-            if (item == 2)//ハンマー
+            if (currentItemNum == 2)//ハンマー
             {
                 Ray ray = new Ray();
                 RaycastHit hit = new RaycastHit();
@@ -37,8 +37,8 @@ public class PlayerScript : MonoBehaviour
                         audioSource.PlayOneShot(se[0]);
                         hit.collider.gameObject.GetComponent<onionsScript>().stalkingOff();
                         Destroy(hit.collider.gameObject);
-                        itemUI[2].SetActive(false);
-                        item = 0;
+                        currentItemUI[2].SetActive(false);
+                        currentItemNum = 0;
                     }
                 }
             }
@@ -65,22 +65,22 @@ public class PlayerScript : MonoBehaviour
             itemUIReset();
             if(col.gameObject.name == "Snowman")
             {
-                item = 1;
+                currentItemNum = 1;
                 Destroy(col.gameObject);
-                itemUI[1].SetActive(true);
+                currentItemUI[1].SetActive(true);
             }
             if (col.gameObject.name == "Hammer")
             {
-                item = 2;
+                currentItemNum = 2;
                 Destroy(col.gameObject);
-                itemUI[2].SetActive(true);
+                currentItemUI[2].SetActive(true);
             }
         }
     }
 
     void itemUIReset()
     {
-        itemUI[1].SetActive(false);
-        itemUI[2].SetActive(false);
+        currentItemUI[1].SetActive(false);
+        currentItemUI[2].SetActive(false);
     }
 }
