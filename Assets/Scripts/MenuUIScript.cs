@@ -5,22 +5,11 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-
-[System.Serializable]
-public class SaveData
-{
-    public float masterVolume;
-    public float bgmVolume;
-    public float seVolume;
-}
+using UnityEngine.SceneManagement;
 
 public class MenuUIScript : MonoBehaviour
 {
     bool pause = false;
-
-    /*SaveData saveData = new SaveData();
-    string settingJson;
-    const string SAVE_FILE_PATH = "save.txt";*/
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject pauseMenuUI;
@@ -116,12 +105,12 @@ public class MenuUIScript : MonoBehaviour
     {
         Time.timeScale = 1;
         saveSetting();
-        Debug.Log("タイトル画面まだ作ってねえええ");
+        SceneManager.LoadScene("Title");
     }
 
     public void onQuitButton()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
@@ -139,18 +128,6 @@ public class MenuUIScript : MonoBehaviour
 
     void saveSetting()
     {
-        /*saveData.masterVolume = masterVolumeSlider.GetComponent<Slider>().value;
-        saveData.bgmVolume = bgmVolumeSlider.GetComponent<Slider>().value;
-        saveData.seVolume = seVolumeSlider.GetComponent<Slider>().value;
-
-        settingJson = JsonUtility.ToJson(saveData);
-
-        string path = Application.dataPath + "/" + SAVE_FILE_PATH;
-        StreamWriter writer = new StreamWriter(path, false);
-        writer.WriteLine(saveData);
-        writer.Flush();
-        writer.Close();*/
-
         PlayerPrefs.SetFloat("MasterVolume", masterVolumeSlider.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("BGMVolume", bgmVolumeSlider.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("SEVolume", seVolumeSlider.GetComponent<Slider>().value);
